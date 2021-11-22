@@ -3,6 +3,7 @@
 The application  expose an API respecting the REST architecture style.
 - Get List of All Movies
 - Create Movie
+- Get data : Number of films by year 
 
 Server : 
 - PlayFramwork server 
