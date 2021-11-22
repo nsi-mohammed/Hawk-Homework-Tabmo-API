@@ -6,6 +6,8 @@ import org.junit.Test
 
 class HawkErrorHelperTest {
 
+
+  // input error json object with code 230 and 'error' as message
   @Test
   def errorMsgResponseTest01(): Unit ={
     val result = errorMsgResponse("error", 230)

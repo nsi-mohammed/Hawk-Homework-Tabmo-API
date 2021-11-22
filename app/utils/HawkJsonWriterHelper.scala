@@ -1,6 +1,6 @@
 package utils
 
-object JsonWriter {
+object HawkJsonWriterHelper {
 
   def write(obj: Any, tabCount: Int = 2): String = {
 
@@ -34,8 +34,7 @@ object JsonWriter {
       case s: String if s.contains("String") => s""""$value""""
       case i: String if i.contains("int")    => s"$value"
       //case x: String                         =>
-        // println("\nx = " + x + "x.getClass = " + x.getClass + "\n\n")
-        JsonWriter.write(value, tabCount * 2)
+        HawkJsonWriterHelper.write(value, tabCount * 2)
     }
   }
 }

@@ -35,31 +35,6 @@ object HawkMovieHelper {
     "ranking" -> "Note"
   )
 
-  val objTojson: JsValue = JsObject(
-    Seq(
-      "name"     -> JsString("Watership Down"),
-      "location" -> JsObject(Seq("lat" -> JsNumber(51.235685), "long" -> JsNumber(-1.309197))),
-      "residents" -> JsArray(
-        IndexedSeq(
-          JsObject(
-            Seq(
-              "name" -> JsString("Fiver"),
-              "age"  -> JsNumber(4),
-              "role" -> JsNull
-            )
-          ),
-          JsObject(
-            Seq(
-              "name" -> JsString("Bigwig"),
-              "age"  -> JsNumber(6),
-              "role" -> JsString("Owsla")
-            )
-          )
-        )
-      )
-    )
-  )
-
 
   def movieJsFromObject(movie : Movie): JsValue = JsObject(
     Seq(
@@ -106,7 +81,7 @@ object HawkMovieHelper {
             array.map( e => JsObject(
               Seq(
                 "year" -> e._1,
-                "number"  -> e._2
+                "numberOfMovies"  -> e._2
               )
             ))  : _ *
           )

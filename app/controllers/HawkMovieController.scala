@@ -12,8 +12,10 @@ import utils.HawkMovieHelper.{movieJsFromObject, movieListDbMacok}
 /**
  * This controller creates ACTIONS to handle HTTP requests to the
  * HawK Movies API REST.
- * - Create Movie
- * - GET ALL MOVIES
+ * h Home Page index
+ * - Create Movie funct createMovie
+ * - GET ALL MOVIES funct getAllMovies
+ * - GET STATISTICS funct getStatistics
  */
 @Singleton
 class HawkMovieController @Inject()(val controllerComponents: ControllerComponents) extends BaseController {
@@ -29,7 +31,6 @@ class HawkMovieController @Inject()(val controllerComponents: ControllerComponen
 
       if (genFilterOpt.isDefined && genFilterOpt.get.contains("?genre=")) {
         val filter : String= genFilterOpt.get.split("\\?").last.split("=").last
-        println("filter =>" + filter)
         val filtredList  = HawkMovieHelper.getAllMovies(HawkMovieHelper.movieListDbMacok.sorted.filter(movie => movie.genre.contains(filter.toLowerCase)))
         Ok(filtredList)
       }else {
