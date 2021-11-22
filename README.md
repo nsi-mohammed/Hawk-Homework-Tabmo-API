@@ -13,6 +13,11 @@ To run the server :
 
 - todo : excute the script : sbt-run.sh
 
-You can run tests with juint plugin test (Junit and spec Play Test).
-All tests are under the repository test 
 
+For tests : 
+- Unitary tests 
+  You can run tests with juint plugin test (Junit and spec Play Test).
+  All tests are under the repository test 
+
+- postamn tests : 
+  
