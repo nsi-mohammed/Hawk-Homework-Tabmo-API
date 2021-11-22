@@ -96,5 +96,23 @@ object HawkMovieHelper {
       )
     )
   }
+  def getStatisticsMovieByYear(movieList : List[Movie]): JsValue = {
+    val array = movieList.groupBy(_.year).map(e => (JsString(e._1.toString),JsString(e._2.size.toString)) ).toList
+    JsObject(
+      Seq(
+        "Statistics"     -> JsString("Number of films by year"),
+        "data" -> JsArray(
+          Seq(
+            array.map( e => JsObject(
+              Seq(
+                "year" -> e._1,
+                "number"  -> e._2
+              )
+            ))  : _ *
+          )
+        )
+      )
+    )
+  }
 
 }

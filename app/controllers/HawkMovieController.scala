@@ -53,4 +53,10 @@ class HawkMovieController @Inject()(val controllerComponents: ControllerComponen
       }
       .merge
   }
+
+  def getStatistics()= Action { implicit request: Request[AnyContent] => {
+
+    Ok(HawkMovieHelper.getStatisticsMovieByYear(HawkMovieHelper.movieListDbMacok))
+    }
+  }
 }

@@ -15,5 +15,6 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 GET  /hawk/services                  controllers.HawkMovieController.index()
 
 #Movies API
-GET /hawk/services/movies           controllers.HawkMovieController.getAllMovies()
-POST /hawk/services/movie           controllers.HawkMovieController.createMovie()
+GET /hawk/services/movies                      controllers.HawkMovieController.getAllMovies()
+POST /hawk/services/movie                      controllers.HawkMovieController.createMovie()
+GET /hawk/services/movies/statistics           controllers.HawkMovieController.getStatistics()
