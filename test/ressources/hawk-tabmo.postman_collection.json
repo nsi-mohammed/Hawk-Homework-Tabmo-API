@@ -45,6 +45,18 @@
 		},
 		{
 			"name": "Get Movies filtrer par genre",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var ok = 200;",
+							"if (responseCode.code !== ok) { tests[\"Status code is \"+responseCode.name+ \" \"+responseCode.code+ \" != \"+ok+ \" : \"+responseBody] = responseCode.code === ok; return; }"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -69,6 +81,18 @@
 		},
 		{
 			"name": "Create Movie",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var ok = 201;",
+							"if (responseCode.code !== ok) { tests[\"Status code is \"+responseCode.name+ \" \"+responseCode.code+ \" != \"+ok+ \" : \"+responseBody] = responseCode.code === ok; return; }"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -83,15 +107,32 @@
 					"raw": "{\n\t\t\"Titre\": \"title-3\",\n\t\t\"Nationalité\": \"BRA\",\n\t\t\"Années de production\": 1960,\n        \"Date de sortie française\": \"1960-14-11\",\n\t\t\"Genres\": [\"Corean\"],\n\t\t\"Note\": 1\n\t}"
 				},
 				"url": {
-					"raw": "localhost:9000/hawk/services/movie",
+					"raw": "{{url}}hawk/services/movie",
 					"host": [
-						"localhost"
+						"{{url}}hawk"
 					],
-					"port": "9000",
 					"path": [
-						"hawk",
 						"services",
 						"movie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Statistics",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}hawk/services/movies/statistics",
+					"host": [
+						"{{url}}hawk"
+					],
+					"path": [
+						"services",
+						"movies",
+						"statistics"
 					]
 				}
 			},
