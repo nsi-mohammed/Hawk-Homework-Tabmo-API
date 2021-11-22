@@ -20,4 +20,4 @@ For tests :
   All tests are under the repository test 
 
 - postamn tests : 
-  
+  The collection with global environnement are under test/ressource
