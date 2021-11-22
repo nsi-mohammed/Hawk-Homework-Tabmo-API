@@ -1,0 +1,101 @@
+{
+	"info": {
+		"_postman_id": "dc99182b-20fa-41b0-9711-dac6b95311c1",
+		"name": "hawk-tabmo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Movies",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var ok = 200;",
+							"if (responseCode.code !== ok) { tests[\"Status code is \"+responseCode.name+ \" \"+responseCode.code+ \" != \"+ok+ \" : \"+responseBody] = responseCode.code === ok; return; }",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"var nb = jsonData.movies.length;",
+							"if (nb !== jsonData.Size) { tests[\"Size is KO\" ]; return; }",
+							"",
+							"",
+							"//pm.environment.unset(\"ProductReference\");",
+							"pm.environment.set(\"moviesListSize\", nb );"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}hawk/services/movies",
+					"host": [
+						"{{url}}hawk"
+					],
+					"path": [
+						"services",
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Movies filtrer par genre",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}hawk/services/movies?genre=PoliCIER",
+					"host": [
+						"{{url}}hawk"
+					],
+					"path": [
+						"services",
+						"movies"
+					],
+					"query": [
+						{
+							"key": "genre",
+							"value": "PoliCIER"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Movie",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"Titre\": \"title-3\",\n\t\t\"Nationalité\": \"BRA\",\n\t\t\"Années de production\": 1960,\n        \"Date de sortie française\": \"1960-14-11\",\n\t\t\"Genres\": [\"Corean\"],\n\t\t\"Note\": 1\n\t}"
+				},
+				"url": {
+					"raw": "localhost:9000/hawk/services/movie",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"hawk",
+						"services",
+						"movie"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
