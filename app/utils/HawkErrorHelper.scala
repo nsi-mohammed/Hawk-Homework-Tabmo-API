@@ -26,10 +26,7 @@ object HawkErrorHelper {
     val strFieldResult: JsResult[String] = (bodyJs \ filedName).validate[String]
     strFieldResult match {
       case JsSuccess(field, _) => if (validateFunct(field)) Right(Some(strFieldResult.get)) else Left(errMsg)
-      case e: JsError         => {
-        println(JsError.toJson(e).toString())
-        Right(None)
-      }
+      case e: JsError         => Right(None)
     }
   }
 
@@ -51,10 +48,7 @@ object HawkErrorHelper {
 
     intFieldResult match {
       case JsSuccess(field, _) => if (validateFunct(field)) Right(Some(intFieldResult.get)) else Left(errMsg)
-      case e: JsError         => {
-        println(JsError.toJson(e).toString())
-        Right(None)
-      }
+      case e: JsError         => Right(None)
     }
   }
   def getAndValidateArrayStrField(bodyJs :JsValue, filedName: String, validateFunct : (Array[String]) => Boolean, errMsg : String ): Either[String,Option[Array[String]]]= {
@@ -62,10 +56,7 @@ object HawkErrorHelper {
 
     arrayStrFieldResult match {
       case JsSuccess(field, _) => if (validateFunct(field)) Right(Some(arrayStrFieldResult.get)) else Left(errMsg)
-      case e: JsError         => {
-        println(JsError.toJson(e).toString())
-        Right(None)
-      }
+      case e: JsError         =>  Right(None)
     }
   }
 
@@ -80,10 +71,7 @@ object HawkErrorHelper {
           case ex => Left(s"${errMsg}")
         }
       }else Left(errMsg)
-      case e: JsError         => {
-        println(JsError.toJson(e).toString())
-        Right(None)
-      }
+      case e: JsError         => Right(None)
     }
   }
 

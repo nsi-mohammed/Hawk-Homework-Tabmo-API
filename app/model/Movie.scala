@@ -1,5 +1,14 @@
 package model
+/*
+import play.api.libs.json.Json
+import scalikejdbc.WrappedResultSet
+import scalikejdbc._
+import scalikejdbc.async._
+import scalikejdbc.async.FutureImplicits._
 
+import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
+*/
 case class Movie(
                  title : String,
                  country :String,
@@ -22,3 +31,31 @@ case class Movie(
         else 1
   }
 }
+
+/*
+object Movie extends SQLSyntaxSupport[Movie] {
+
+  implicit val jsonFormat = Json.format[Movie]
+
+  override val columnNames = Seq("id", "name")
+
+  lazy val b = Movie.syntax
+
+  def db(b: SyntaxProvider[Movie])(rs: WrappedResultSet): Movie = db(b.resultName)(rs)
+
+  def db(b: ResultName[Movie])(rs: WrappedResultSet): Movie = MovieMovie(
+    rs.long(b.id),
+    rs.string(b.name)
+  )
+
+  def create(name: String)(implicit session: AsyncDBSession = AsyncDB.sharedSession): Future[Movie] = {
+    val sql = withSQL(insert.into(Movie).namedValues(column.name -> name).returningId)
+    sql.updateAndReturnGeneratedKey().map(id => Movie(id, name))
+  }
+
+  def findAll(implicit session: AsyncDBSession = AsyncDB.sharedSession): Future[List[Movie]] = {
+    withSQL(select.from[Movie](Movie as b)).map(Movie.db(b))
+  }
+
+}
+*/
